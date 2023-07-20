@@ -128,7 +128,7 @@ class _LoginPageState extends State<LoginPage> {
                             fontSize: 18,
                           ),
                           decoration: InputDecoration(
-                            suffixIcon: (clicked)
+                            suffixIcon: (!clicked)
                                 ? GestureDetector(
                                     onTap: () => setState(() {
                                       clicked = !clicked;
@@ -150,7 +150,7 @@ class _LoginPageState extends State<LoginPage> {
                                 const EdgeInsets.fromLTRB(10, 5, 10, 5),
                             border: InputBorder.none,
                           ),
-                          obscureText: (clicked) ? true : false,
+                          obscureText: (!clicked) ? true : false,
                           controller: passController,
                         ),
                       ),
