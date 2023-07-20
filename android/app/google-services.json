@@ -1,0 +1,76 @@
+{
+  "project_info": {
+    "project_number": "610016631762",
+    "project_id": "attendance-app-5fce5",
+    "storage_bucket": "attendance-app-5fce5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:610016631762:android:3087b610ff6ccb5a05460b",
+        "android_client_info": {
+          "package_name": "com.exampleproj"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "610016631762-7i96mlujg7sj3sh4svu8c09h5f313g87.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.exampleproj",
+            "certificate_hash": "0ac230f74bfaac6cc5760748277601259c8ae2b8"
+          }
+        },
+        {
+          "client_id": "610016631762-tv81gnhnmcbn5bijepegq6oi95slkrn5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAGv0ZQWCBmkjtPHie3UUhRkmT6emhdG6E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "610016631762-tv81gnhnmcbn5bijepegq6oi95slkrn5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:610016631762:android:abbb1d981537b17505460b",
+        "android_client_info": {
+          "package_name": "com.exampleproj.attendence_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "610016631762-tv81gnhnmcbn5bijepegq6oi95slkrn5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAGv0ZQWCBmkjtPHie3UUhRkmT6emhdG6E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "610016631762-tv81gnhnmcbn5bijepegq6oi95slkrn5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
