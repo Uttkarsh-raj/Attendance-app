@@ -1,9 +1,6 @@
-// import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-
 import '../signup/signup_page.dart';
-// import 'package:task/main_page.dart';
-// import 'package:task/signup/signup.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -13,6 +10,7 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  bool clicked = false;
   TextEditingController emailController = TextEditingController();
   TextEditingController passController = TextEditingController();
 
@@ -130,6 +128,19 @@ class _LoginPageState extends State<LoginPage> {
                             fontSize: 18,
                           ),
                           decoration: InputDecoration(
+                            suffixIcon: (clicked)
+                                ? GestureDetector(
+                                    onTap: () => setState(() {
+                                      clicked = !clicked;
+                                    }),
+                                    child: const Icon(Icons.visibility_off),
+                                  )
+                                : GestureDetector(
+                                    onTap: () => setState(() {
+                                      clicked = !clicked;
+                                    }),
+                                    child: const Icon(Icons.visibility),
+                                  ),
                             hintText: 'Password',
                             hintStyle: TextStyle(
                               fontSize: 18,
@@ -139,7 +150,7 @@ class _LoginPageState extends State<LoginPage> {
                                 const EdgeInsets.fromLTRB(10, 5, 10, 5),
                             border: InputBorder.none,
                           ),
-                          obscureText: true,
+                          obscureText: (clicked) ? true : false,
                           controller: passController,
                         ),
                       ),
@@ -150,19 +161,19 @@ class _LoginPageState extends State<LoginPage> {
               const SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () async {
-                  // try {
-                  //   await FirebaseAuth.instance.signInWithEmailAndPassword(
-                  //       email: emailController.text,
-                  //       password: passController.text);
-                  //   const Duration(seconds: 2);
-                  //   Navigator.of(context).push(
-                  //     MaterialPageRoute(
-                  //       builder: (context) => const MainPage(),
-                  //     ),
-                  //   );
-                  // } catch (e) {
-                  //   showSnackBar('$e');
-                  // }
+                  try {
+                    await FirebaseAuth.instance.signInWithEmailAndPassword(
+                        email: emailController.text,
+                        password: passController.text);
+                    const Duration(seconds: 2);
+                    // Navigator.of(context).push(
+                    //   MaterialPageRoute(
+                    //     builder: (context) => const MainPage(),
+                    //   ),
+                    // );
+                  } catch (e) {
+                    showSnackBar('$e');
+                  }
                 },
                 child: const Padding(
                   padding: EdgeInsets.all(8.0),

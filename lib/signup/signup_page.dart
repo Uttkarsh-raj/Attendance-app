@@ -1,8 +1,6 @@
-// import 'package:cloud_firestore/cloud_firestore.dart';
-// import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-// import 'package:task/login/login_page.dart';
-
 import '../login/login_page.dart';
 
 class SignUpPage extends StatefulWidget {
@@ -13,20 +11,17 @@ class SignUpPage extends StatefulWidget {
 }
 
 class _SignUpPageState extends State<SignUpPage> {
+  bool clicked = false;
   bool admin = false;
   TextEditingController emailController = TextEditingController();
   TextEditingController passController = TextEditingController();
   TextEditingController nameController = TextEditingController();
-  TextEditingController phoneController = TextEditingController();
-  TextEditingController ageController = TextEditingController();
 
   @override
   void dispose() {
     emailController.clear();
-    phoneController.clear();
     nameController.clear();
     passController.clear();
-    ageController.clear();
     super.dispose();
   }
 
@@ -111,7 +106,6 @@ class _SignUpPageState extends State<SignUpPage> {
                                     const EdgeInsets.fromLTRB(10, 5, 10, 5),
                                 border: InputBorder.none,
                               ),
-                              obscureText: true,
                               controller: nameController,
                             ),
                           ),
@@ -157,7 +151,6 @@ class _SignUpPageState extends State<SignUpPage> {
                                     const EdgeInsets.fromLTRB(10, 5, 10, 5),
                                 border: InputBorder.none,
                               ),
-                              obscureText: true,
                               controller: emailController,
                             ),
                           ),
@@ -194,6 +187,19 @@ class _SignUpPageState extends State<SignUpPage> {
                                 fontSize: 18,
                               ),
                               decoration: InputDecoration(
+                                suffixIcon: (clicked)
+                                    ? GestureDetector(
+                                        onTap: () => setState(() {
+                                          clicked = !clicked;
+                                        }),
+                                        child: const Icon(Icons.visibility_off),
+                                      )
+                                    : GestureDetector(
+                                        onTap: () => setState(() {
+                                          clicked = !clicked;
+                                        }),
+                                        child: const Icon(Icons.visibility),
+                                      ),
                                 hintText: 'Password',
                                 hintStyle: TextStyle(
                                   fontSize: 18,
@@ -203,7 +209,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                     const EdgeInsets.fromLTRB(10, 5, 10, 5),
                                 border: InputBorder.none,
                               ),
-                              obscureText: true,
+                              obscureText: (clicked) ? true : false,
                               controller: passController,
                             ),
                           ),
@@ -235,18 +241,29 @@ class _SignUpPageState extends State<SignUpPage> {
                   const SizedBox(height: 10),
                   ElevatedButton(
                     onPressed: () async {
-                      // await FirebaseAuth.instance
-                      //     .createUserWithEmailAndPassword(
-                      //         email: emailController.text.toString(),
-                      //         password: passController.text.toString());
-                      // await FirebaseFirestore.instance.collection('users').add({
-                      //   'email': emailController.text.toString(),
-                      //   'name': nameController.text.toString(),
-                      //   'phone': phoneController.text.toString(),
-                      //   'age': ageController.text.toString(),
-                      //   'scanned': s,
-                      // });
-                      // showSnackBar('Account created Successfully!! Plz Login.');
+                      try {
+                        await FirebaseAuth.instance
+                            .createUserWithEmailAndPassword(
+                                email: emailController.text.toString(),
+                                password: passController.text.toString());
+                        await FirebaseFirestore.instance
+                            .collection('users')
+                            .doc(emailController.text.trim().toString())
+                            .set(
+                          {
+                            'isAdmin': (admin) ? true : false,
+                            'email': emailController.text.toString(),
+                            'name': nameController.text.toString(),
+                            'start': [],
+                            'end': [],
+                          },
+                        );
+
+                        showSnackBar(
+                            'Account created Successfully!! Plz Login.');
+                      } catch (e) {
+                        showSnackBar(e.toString());
+                      }
                     },
                     child: const Padding(
                       padding: EdgeInsets.all(8.0),
