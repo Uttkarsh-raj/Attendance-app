@@ -38,7 +38,7 @@ dependencies:
   firebase_core: ^2.15.0
   cloud_firestore: ^4.8.3
   firebase_auth: ^4.7.1
-  slider_button: ^2.0.0
+  lottie: ^2.5.0
 
 dev_dependencies:
   flutter_test:
@@ -68,6 +68,7 @@ flutter:
   #   - images/a_dot_ham.jpeg
   assets:
     - asset/images/
+    - asset/gifs/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
